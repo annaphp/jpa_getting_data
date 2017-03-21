@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class User {
 	private Long id;
 	private String loginName;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<>();
 	
 	public User(String loginName) {
