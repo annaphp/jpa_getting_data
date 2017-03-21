@@ -45,24 +45,13 @@ public class UserRepoTest {
 	}
 	
 	@Test
-	public void shouldAddRole(){
+	public void shouldAddUser(){
 		user = repo.save(user);
 		role = roleRepo.save(role);
-		user.getRoles().add(role);
-		repo.update(user);
-		user = repo.findById(user.getId());	
-		assertTrue(user.getRoles().contains(role));
+		role.setUser(user);
+		roleRepo.update(role);
+		role = roleRepo.findById(role.getId());
+		assertTrue(role.getUser().equals(user));	
 	}
-	
-	@Test
-	public void shouldRemoveRole(){
-		user = repo.save(user);
-		role = roleRepo.save(role);
-		user.getRoles().add(role);
-		repo.update(user);
-		user = repo.findById(user.getId());	
-		user.getRoles().remove(role);
-		repo.update(user);
-		assertFalse(user.getRoles().contains(role));
-	}
+
 }
