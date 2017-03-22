@@ -8,9 +8,12 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQuery(name = "findAllUsers",query="select distinct u from User u left join fetch u.roles")
+
 public class User {
 	
 	@Id
@@ -76,4 +79,11 @@ public class User {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", loginName=" + loginName+ ", Roles" + roles+ "]";
+	}
+	
+	
 }
