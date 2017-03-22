@@ -1,5 +1,7 @@
 package repo;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,7 +19,6 @@ public class UserRepo {
 	
 	public User save(User user){
 		em.persist(user);
-		System.out.println("*****" + user.getId());
 		return user;
 	}
 	
@@ -29,6 +30,10 @@ public class UserRepo {
 	public User findById(Long id){
 		return em.find(User.class, id);
 	}
+	
+	
+	
+	
 	
 
 }

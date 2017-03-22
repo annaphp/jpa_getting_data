@@ -2,9 +2,13 @@ package model;
 
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -14,6 +18,8 @@ public class User {
 	private Long id;
 	private String loginName;
 	
+	@OneToMany(mappedBy="user")
+	private Set<Role> roles = new HashSet<>();
 	
 	public User(String loginName) {
 		this.loginName = loginName;
@@ -35,6 +41,15 @@ public class User {
 
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
+	}
+
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
